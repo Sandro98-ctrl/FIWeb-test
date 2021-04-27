@@ -15,7 +15,6 @@ $(document).ready(function () {
 
     $('#formCadastro').submit(function (e) {
         e.preventDefault();
-        
         $.ajax({
             url: urlPost,
             method: "POST",
@@ -46,7 +45,6 @@ $(document).ready(function () {
             }
         });
     })
-    
 })
 
 function ModalDialog(titulo, texto) {
