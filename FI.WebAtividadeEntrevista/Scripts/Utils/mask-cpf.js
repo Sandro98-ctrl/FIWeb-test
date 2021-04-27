@@ -1,13 +1,12 @@
 
-jQuery.loadScript = function (url, callback) {
+jQuery.loadScript = function (url) {
     jQuery.ajax({
         url: url,
         dataType: 'script',
-        success: callback,
-        async: true
+        async: false
     });
 }
 
-$.loadScript('https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js', function () {
-    $("#CPF").inputmask("999.999.999-99", { removeMaskOnSubmit: true });
-});
+$.loadScript('https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js');
+
+$("#CPF").inputmask("999.999.999-99", { removeMaskOnSubmit: true });
