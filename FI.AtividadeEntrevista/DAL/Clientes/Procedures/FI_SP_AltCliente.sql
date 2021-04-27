@@ -8,8 +8,8 @@
     @LOGRADOURO    VARCHAR (500),
     @EMAIL         VARCHAR (2079),
     @TELEFONE      VARCHAR (15),
-	@Id			   BIGINT,
-	@CPF		   VARCHAR(11)
+	@CPF		   VARCHAR (11),
+	@Id			   BIGINT
 AS
 BEGIN
 	UPDATE CLIENTES 

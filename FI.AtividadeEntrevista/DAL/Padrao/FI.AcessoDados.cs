@@ -1,32 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FI.AtividadeEntrevista.DAL
 {
     internal class AcessoDados
     {
-        private string stringDeConexao
+        private string StringDeConexao
         {
             get
             {
-                ConnectionStringSettings conn = System.Configuration.ConfigurationManager.ConnectionStrings["BancoDeDados"];
-                if (conn != null)
-                    return conn.ConnectionString;
-                else
-                    return string.Empty;
+                var conn = ConfigurationManager.ConnectionStrings["BancoDeDados"];
+                return conn?.ConnectionString ?? string.Empty;
             }
         }
 
         internal void Executar(string NomeProcedure, List<SqlParameter> parametros)
         {
             SqlCommand comando = new SqlCommand();
-            SqlConnection conexao = new SqlConnection(stringDeConexao);
+            SqlConnection conexao = new SqlConnection(StringDeConexao);
             comando.Connection = conexao;
             comando.CommandType = System.Data.CommandType.StoredProcedure;
             comando.CommandText = NomeProcedure;
@@ -47,7 +40,7 @@ namespace FI.AtividadeEntrevista.DAL
         internal DataSet Consultar(string NomeProcedure, List<SqlParameter> parametros)
         {
             SqlCommand comando = new SqlCommand();
-            SqlConnection conexao = new SqlConnection(stringDeConexao);
+            SqlConnection conexao = new SqlConnection(StringDeConexao);
 
             comando.Connection = conexao;
             comando.CommandType = System.Data.CommandType.StoredProcedure;
@@ -60,7 +53,7 @@ namespace FI.AtividadeEntrevista.DAL
             conexao.Open();
 
             try
-            {               
+            {
                 adapter.Fill(ds);
             }
             finally
@@ -70,6 +63,5 @@ namespace FI.AtividadeEntrevista.DAL
 
             return ds;
         }
-
     }
 }
