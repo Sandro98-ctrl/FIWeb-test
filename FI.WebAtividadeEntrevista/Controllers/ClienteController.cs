@@ -1,7 +1,6 @@
 ﻿using FI.AtividadeEntrevista.BLL;
 using FI.AtividadeEntrevista.DML;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using WebAtividadeEntrevista.Models;
@@ -32,26 +31,29 @@ namespace WebAtividadeEntrevista.Controllers
                 Response.StatusCode = 400;
                 return Json(string.Join(Environment.NewLine, erros));
             }
-            else
-            {
-                var bo = new BoCliente();
 
-                model.Id = bo.Incluir(new Cliente
-                {                    
-                    CEP = model.CEP,
-                    Cidade = model.Cidade,
-                    CPF = model.CPF,
-                    Email = model.Email,
-                    Estado = model.Estado,
-                    Logradouro = model.Logradouro,
-                    Nacionalidade = model.Nacionalidade,
-                    Nome = model.Nome,
-                    Sobrenome = model.Sobrenome,
-                    Telefone = model.Telefone
-                });
-           
-                return Json("Cadastro efetuado com sucesso");
+            var bo = new BoCliente();
+
+            if (bo.VerificarExistencia(model.CPF))
+            {
+                return Json($"CPF {model.CPF} já existente no banco de dados");
             }
+
+            model.Id = bo.Incluir(new Cliente
+            {
+                CEP = model.CEP,
+                Cidade = model.Cidade,
+                CPF = model.CPF,
+                Email = model.Email,
+                Estado = model.Estado,
+                Logradouro = model.Logradouro,
+                Nacionalidade = model.Nacionalidade,
+                Nome = model.Nome,
+                Sobrenome = model.Sobrenome,
+                Telefone = model.Telefone
+            });
+
+            return Json("Cadastro efetuado com sucesso");
         }
 
         [HttpPost]
@@ -66,27 +68,25 @@ namespace WebAtividadeEntrevista.Controllers
                 Response.StatusCode = 400;
                 return Json(string.Join(Environment.NewLine, erros));
             }
-            else
-            {
-                var bo = new BoCliente();
 
-                bo.Alterar(new Cliente
-                {
-                    Id = model.Id,
-                    CEP = model.CEP,
-                    Cidade = model.Cidade,
-                    CPF = model.CPF,
-                    Email = model.Email,
-                    Estado = model.Estado,
-                    Logradouro = model.Logradouro,
-                    Nacionalidade = model.Nacionalidade,
-                    Nome = model.Nome,
-                    Sobrenome = model.Sobrenome,
-                    Telefone = model.Telefone
-                });
-                               
-                return Json("Cadastro alterado com sucesso");
-            }
+            var bo = new BoCliente();
+
+            bo.Alterar(new Cliente
+            {
+                Id = model.Id,
+                CEP = model.CEP,
+                Cidade = model.Cidade,
+                CPF = model.CPF,
+                Email = model.Email,
+                Estado = model.Estado,
+                Logradouro = model.Logradouro,
+                Nacionalidade = model.Nacionalidade,
+                Nome = model.Nome,
+                Sobrenome = model.Sobrenome,
+                Telefone = model.Telefone
+            });
+
+            return Json("Cadastro alterado com sucesso");
         }
 
         [HttpGet]
