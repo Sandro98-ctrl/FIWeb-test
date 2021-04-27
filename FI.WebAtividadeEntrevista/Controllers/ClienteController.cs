@@ -36,6 +36,7 @@ namespace WebAtividadeEntrevista.Controllers
 
             if (bo.VerificarExistencia(model.CPF))
             {
+                Response.StatusCode = 400;
                 return Json($"CPF {model.CPF} já existente no banco de dados");
             }
 
