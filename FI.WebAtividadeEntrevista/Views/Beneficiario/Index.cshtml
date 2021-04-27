@@ -1,0 +1,34 @@
+﻿
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">Beneficiários</h4>
+</div>
+<div class="modal-body">
+    <form class="needs-validation" novalidate>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="CPF">CPF:</label>
+                    <input required="required" type="text" class="form-control" id="CPF" name="CPF" maxlength="14">
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="Nome">Nome:</label>
+                    <input required="required" type="text" class="form-control" id="Nome" name="Nome" placeholder="Ex.: João da Silva" maxlength="50">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-sm btn-success" title="Adicionar benefeciário">Incluir</button>
+                </div>
+            </div>
+        </div>
+
+        <table id="gridBeneficiarios" class="table"></table>
+        
+        <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Fechar</button>
+        </div>
+    </form>
+</div>

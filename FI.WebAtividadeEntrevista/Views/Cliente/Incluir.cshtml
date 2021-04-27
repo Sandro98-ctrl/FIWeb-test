@@ -6,8 +6,10 @@
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js" ></script>
     <script>
         var urlPost = '@Url.Action("Incluir", "Cliente", new { area = "" })';
+        var urlBenef = '@Url.Action("Index", "Beneficiario", new { area = "" })';
     </script>
     @Scripts.Render("~/bundles/clientes")
+    @Scripts.Render("~/bundles/beneficiarios")
     @Scripts.Render("~/bundles/CPFMask")
 }
 <h2>@Html.Raw(ViewBag.Title)</h2>
