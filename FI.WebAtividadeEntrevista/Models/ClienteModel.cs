@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using WebAtividadeEntrevista.Models.Validations;
 
 namespace WebAtividadeEntrevista.Models
 {
@@ -24,6 +25,7 @@ namespace WebAtividadeEntrevista.Models
         /// <summary>
         /// CPF
         /// </summary>
+        [CpfValidation]
         [Required]
         public string CPF { get; set; }
 
